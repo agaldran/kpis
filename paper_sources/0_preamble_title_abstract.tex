@@ -1,0 +1,163 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage[export]{adjustbox}
+%\captionsetup[table]{skip=1pt, font=footnotesize}
+
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{amsmath,amssymb}
+% \usepackage{hyperref}
+\usepackage[pagebackref=true]{hyperref} 
+
+% \renewcommand*\backref[1]{\ifx#1\relax \else (Cited on #1) \fi}
+% https://tex.stackexchange.com/a/338931
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{collcell}
+\usepackage{hhline}
+\usepackage{pgf}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{bbm}
+\usepackage{siunitx}
+\usepackage{arydshln}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
+\usepackage{accents}
+\newlength{\dhatheight}
+% \newcommand{\bar}[1]{%
+%     \settoheight{\dhatheight}{\ensuremath{\hat{#1}}}%
+%     \addtolength{\dhatheight}{-0.25ex}%
+%     \hat{\vphantom{\rule{1pt}{\dhatheight}}%
+%     \smash{\hat{#1}}}}
+%\usepackage{paralist} % for inline lists
+\usepackage{wrapfig}
+\usepackage{bm}
+\usepackage{soul}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\def\colorModel{hsb} %You can use rgb or hsb
+\newcommand\ColCell[1]{
+  \pgfmathparse{#1<50?1:0}  %Threshold for changing the font color into the cells
+    \ifnum\pgfmathresult=0\relax\color{white}\fi
+  \pgfmathsetmacro\compA{0}      %Component R or H
+  \pgfmathsetmacro\compB{#1/100} %Component G or S
+  \pgfmathsetmacro\compC{1}      %Component B or B
+  \edef\x{\noexpand\centering\noexpand\cellcolor[\colorModel]{\compA,\compB,\compC}}\x #1
+  } 
+\newcolumntype{E}{>{\collectcell\ColCell}m{0.45cm}<{\endcollectcell}}  %Cell width
+\newcommand*\rot{\rotatebox{90}}
+
+\usepackage[T1]{fontenc} 
+\usepackage{lipsum}
+
+% \usepackage{tcolorbox}
+% \newtcolorbox{afancybox}[1][]{#1,colback=white,colframe=black}
+% \usepackage{ulem}
+% \renewcommand{\ULdepth}{1.8pt}
+
+\usepackage{commath}
+\usepackage[misc,geometry]{ifsym}
+\usepackage[title]{appendix}
+\usepackage[figuresright]{rotating}
+\usepackage{booktabs}
+\setlength\lightrulewidth{0.3pt}
+\usepackage{nicefrac}
+
+\usepackage{svg}
+
+\usepackage{tcolorbox}
+\newtcolorbox{afancybox}[1][]{#1,colback=lightgray, colframe=black, standard jigsaw, opacityback=0.25}
+
+\usepackage{float}
+\newfloat{Code}{htbp}{loc}
+
+% \newcommand{\Ldice}{$\bm{\mathcal{L}_{Dice}}$}
+\newcommand{\Ldice}{$\mathcal{L}_{Dice}$}
+\newcommand{\Ldiceacldice}{$\mathcal{L}_{Dice}+0.5\cdot\mathcal{L}_{clDice}$}
+\newcommand{\Ldiceclce}{$\mathcal{L}_{Dice}+\mathcal{L}_{clCE}$}
+
+\newcommand{\Lce}{$\mathcal{L}_{CE}$}
+\newcommand{\Lceacldice}{$\mathcal{L}_{CE}+0.5\cdot\mathcal{L}_{clDice}$}
+\newcommand{\Lceclce}{$\mathcal{L}_{CE}+\mathcal{L}_{clCE}$}
+
+
+\mathchardef\syphen="2D % Define a "math hyphen"
+
+\newcommand*\red{\color{red}}
+\newcommand*\green{\color{ForestGreen}}
+
+\newcommand\sred[1]{{\footnotesize{\color{red}#1}}}
+\newcommand\sgreen[1]{{\footnotesize{\color{ForestGreen}#1}}}
+
+\newcommand{\splus}{\scalebox{0.75}[1.0]{\( + \)}}
+\newcommand{\sminus}{\scalebox{0.75}[1.0]{\( - \)}}
+
+\newcommand{\LL}{\mathcal{L}}
+
+
+\newcommand{\TT}{\mathbf{T}}
+\newcommand{\PP}{\mathbf{P}}
+\newcommand{\s}{\mathbf{S}}
+
+\newcommand{\unl}[1]{\underline{#1}}
+\newcommand{\ft}[1]{\underline{\textbf{#1}}}
+\newcommand{\sd}[1]{\textbf{#1}}
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\begin{document}
+
+\title{Glomeruli Segmentation in Whole-Slide Images: Is Better Local Performance Always Better?}
+
+
+\titlerunning{glomeruli segmentation}
+
+
+\author{Maria Sánchez\inst{1}, Helena Sánchez\inst{1}, Carlos Pérez de Arenaza\inst{1}, David Ribalta\inst{1}, Nerea Arrarte\inst{1}, Oscar Cámara\inst{1}, Adrian Galdran\inst{1,2}}
+% index{Galdran, Adrian} 
+
+
+\authorrunning{M. Sánchez, H. Sánchez, C. Pérez de Arenaza, D. Ribalta, N. Arrarte, O. Cámara, A. Galdran}
+
+\institute{Universitat Pompeu Fabra, Barcelona, Spain \and Computer Vision Center, Universitat Autònoma de Barcelona, Spain.} 
+
+
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+We consider the task of glomeruli segmentation from Whole-Slide Images (WSIs) of pathological kidneys.
+In particular, we compare the performance of two different encoder-decoder architectures for two tasks: local segmentation of patches extracted from a large WSI, and global segmentation of the entire image. 
+Since segmenting high-resolution WSIs is extremely memory-demanding, a typical approach for this task is to break down these images offline, train a patch-wise segmentation model, and then use a sliding-window inference scheme to stitch back the resulting patch segmentations. 
+Contrary to intuition, we observe in our experiments that a model with higher segmentation accuracy at the patch level can incur in large underperformance gaps at the WSI level, even more so when measuring performance as an instance segmentation problem. 
+This work was carried out in the context of the Kidney Pathology Image Segmentation (KPIs) challenge, which took place jointly with MICCAI 2024, and the best patch-level model we present here ranked second in the final hidden test set of the competition. Code to reproduce our experiments is shared at \href{https://github.com/agaldran/kpis}{\url{github.com/agaldran/kpis}}.
+
+
+%We introduced the centerline-Cross-Entropy (clCE) loss function for medical image segmentation, combining topology preservation with accuracy. clCE outperforms existing methods in preserving vascular integrity and segmentation precision across diverse datasets and vascular types. This innovation presents a robust solution for segmenting complex anatomical structures.
+
+
+
+
+
+%\vspace{7cm}
+
+%We share an implementation of the clCE loss function in \href{github.com/anonymous}{\url{github.com/anonymous}}.
+\keywords{Kidney Pathology Image segmentation \and Whole Slide Image Segmentation}
+
+\end{abstract}
+
+
+\setcounter{footnote}{0} 
+

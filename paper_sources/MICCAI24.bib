@@ -1,0 +1,192 @@
+
+@inproceedings{galdran_optimal_2023,
+	title = {On the {Optimal} {Combination} of {Cross}-{Entropy} and {Soft} {Dice} {Losses} for {Lesion} {Segmentation} with {Out}-of-{Distribution} {Robustness}},
+	abstract = {We study the impact of different loss functions on lesion segmentation from medical images. Although the Cross-Entropy (CE) loss is the most popular option when dealing with natural images, for biomedical image segmentation the soft Dice loss is often preferred due to its ability to handle imbalanced scenarios. On the other hand, the combination of both functions has also been successfully applied in these types of tasks. A much less studied problem is the generalization ability of all these losses in the presence of Out-of-Distribution (OoD) data. This refers to samples appearing in test time that are drawn from a different distribution than training images. In our case, we train our models on images that always contain lesions, but in test time we also have lesion-free samples. We analyze the impact of the minimization of different loss functions on in-distribution performance, but also its ability to generalize to OoD data, via comprehensive experiments on polyp segmentation from endoscopic images and ulcer segmentation from diabetic feet images. Our findings are surprising: CE-Dice loss combinations that excel in segmenting in-distribution images have a poor performance when dealing with OoD data, which leads us to recommend the adoption of the CE loss for these types of problems, due to its robustness and ability to generalize to OoD samples. Code associated to our experiments can be found at https://github.com/agaldran/lesion\_losses\_ood.},
+	language = {en},
+	booktitle = {Diabetic {Foot} {Ulcers} {Grand} {Challenge}},
+	publisher = {Springer International Publishing},
+	author = {Galdran, Adrian and Carneiro, Gustavo and Ballester, Miguel A. González},
+	year = {2023},
+	pages = {40--51},
+}
+
+@article{reinke_understanding_2024,
+	title = {Understanding metric-related pitfalls in image analysis validation},
+	volume = {21},
+	copyright = {2024 Springer Nature America, Inc.},
+	issn = {1548-7105},
+	doi = {10.1038/s41592-023-02150-0},
+	abstract = {Validation metrics are key for tracking scientific progress and bridging the current chasm between artificial intelligence research and its translation into practice. However, increasing evidence shows that, particularly in image analysis, metrics are often chosen inadequately. Although taking into account the individual strengths, weaknesses and limitations of validation metrics is a critical prerequisite to making educated choices, the relevant knowledge is currently scattered and poorly accessible to individual researchers. Based on a multistage Delphi process conducted by a multidisciplinary expert consortium as well as extensive community feedback, the present work provides a reliable and comprehensive common point of access to information on pitfalls related to validation metrics in image analysis. Although focused on biomedical image analysis, the addressed pitfalls generalize across application domains and are categorized according to a newly created, domain-agnostic taxonomy. The work serves to enhance global comprehension of a key topic in image analysis validation.},
+	language = {en},
+	number = {2},
+	urldate = {2024-09-24},
+	journal = {Nature Methods},
+	author = {Reinke, Annika and et al.},
+	month = feb,
+	year = {2024},
+	keywords = {Medical research, Education, Cancer},
+	pages = {182--194},
+}
+
+@article{jiang_deep_2021,
+	title = {A {Deep} {Learning}-{Based} {Approach} for {Glomeruli} {Instance} {Segmentation} from {Multistained} {Renal} {Biopsy} {Pathologic} {Images}},
+	volume = {191},
+	doi = {10.1016/j.ajpath.2021.05.004},
+	abstract = {Glomeruli instance segmentation from pathologic images is a fundamental step in the automatic analysis of renal biopsies. Glomerular histologic manifestations vary widely among diseases and cases, and several special staining methods are necessary for pathologic diagnosis. A robust model is needed to segment and classify glomeruli with different staining methods and apply in cases with various glomerular pathologic changes. Herein, pathologic images from renal biopsy slides stained with three basic special staining methods were used to build the data sets. The snapshot group included 1970 glomeruli from 516 patients, and the whole-slide image group included 8665 glomeruli from 148 patients. Cascade Mask region-based convolutional neural net architecture was trained to detect, classify, and segment glomeruli into three categories: i) GN, structural normal; ii) global sclerosis; and iii) glomerular with other lesions. In the snapshot group, total glomeruli, GN, global sclerosis, and glomerular with other lesions achieved an F1 score of 0.914, 0.896, 0.681, and 0.756, respectively, which were comparable with those in the whole-slide image group (0.940, 0.839, 0.806, and 0.753, respectively). Among the three categories, GN achieved the best instance segmentation effect in both groups, as determined by average precision, average recall, F1 score, and Mask mean Intersection over Union. The present model segments and classifies multistained glomeruli with efficiency and robustness. It can be applied as the first step for more detailed glomerular histologic analysis.},
+	number = {8},
+	journal = {The American Journal of Pathology},
+	author = {Jiang, Lei and Chen, Wenkai and Dong, Bao and Mei, Ke and Zhu, Chuang and Liu, Jun and Cai, Meishun and Yan, Yu and Wang, Gongwei and Zuo, Li and Shi, Hongxia},
+	month = aug,
+	year = {2021},
+	pages = {1431--1441},
+}
+
+
+@article{thomas2006renal,
+  title={Renal function--estimation of glomerular filtration rate},
+  author={Thomas, L. and Huber, A. R.},
+  journal={Clinical Chemistry and Laboratory Medicine (CCLM)},
+  volume={44},
+  number={11},
+  pages={1295--1302},
+  year={2006},
+  publisher={De Gruyter}
+}
+
+@online{clevelandclinic,
+    author = {{Cleveland Clinic}},
+    title = {Glomerulonephritis (gn)},
+    url = {https://my.clevelandclinic.org/health/diseases/16167-glomerulonephritis-gn},
+    note = {Accessed: 2024-06-01}
+}
+
+@article{clinical_context,
+  author    = {Francesca Mallamaci and Giovanni Tripepi},
+  title     = {Risk Factors of Chronic Kidney Disease Progression: Between Old and New Concepts},
+  journal   = {J. Clin. Med.},
+  volume    = {13},
+  number    = {3},
+  pages     = {678},
+  year      = {2024},
+  doi       = {10.3390/jcm13030678},
+  publisher = {Nephrology, Dialysis and Transplantation Unit, Grande Ospedale Metropolitano, Bianchi-Melacrino-Morelli (BMM), Reggio Calabria, Italy; Research Unit of Clinical Epidemiology of Reggio Calabria, Institute of Clinical Physiology (IFC), National Research Council (CNR), Reggio Calabria, Italy},
+  note      = {Submission received: 20 December 2023 / Revised: 17 January 2024 / Accepted: 22 January 2024 / Published: 24 January 2024},
+}
+
+@article{kaur2023automatic,
+  title={Automatic Identification of Glomerular in Whole-Slide Images Using a Modified UNet Model},
+  author={Kaur, Gagandeep and Garg, Megha and Gupta, Sonal and Juneja, Sneha and Rashid, Junaid and Gupta, Divya and Shaikh, Afroz},
+  journal={Diagnostics},
+  volume={13},
+  number={19},
+  pages={3152},
+  year={2023},
+  publisher={MDPI}
+}
+@article{jha2021instance,
+  title={Instance segmentation for whole slide imaging: end-to-end or detect-then-segment},
+  author={Jha, Abhinav and Yang, Hongsheng and Deng, Renhao and Kapp, Marshall E. and Fogo, Agnes B. and Huo, Yuankai},
+  journal={Journal of Medical Imaging},
+  volume={8},
+  number={1},
+  pages={014001--014001},
+  year={2021},
+  publisher={SPIE}
+}
+
+@inproceedings{lin2017feature,
+  title={Feature pyramid networks for object detection},
+  author={Lin, Tsung-Yi and Doll{\'a}r, Piotr and Girshick, Ross and He, Kaiming and Hariharan, Bharath and Belongie, Serge},
+  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  pages={2117--2125},
+  year={2017}
+}
+@article{xie2021segformer,
+  title={SegFormer: Simple and efficient design for semantic segmentation with transformers},
+  author={Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M. and Luo, Ping},
+  journal={Advances in Neural Information Processing Systems},
+  volume={34},
+  pages={12077--12090},
+  year={2021}
+}
+
+@misc{qubvel2023segmentation,
+  author = {Pavel Yakubovskiy},
+  title = {Segmentation Models with PyTorch},
+  year = {2023},
+  howpublished = {\url{https://github.com/qubvel-org/segmentation_models.pytorch}}
+}
+
+@inproceedings{dozat2016,
+	title        = {Incorporating {Nesterov Momentum into Adam}},
+	author       = {Dozat, Timothy},
+	booktitle    = {Proceedings of the 4th International Conference on Learning Representations},
+	pages        = {1--4},
+	date         = 2016
+}
+
+
+@article{bouteldja2021deep,
+  title={Deep learning--based segmentation and quantification in experimental kidney histopathology},
+  author={Bouteldja, Nadia and Klinkhammer, Barbara M. and B{\"u}low, Richard D. and Droste, Philipp and Otten, Sebastian W. and Von Stillfried, Simon F. and Merhof, Dorit},
+  journal={Journal of the American Society of Nephrology},
+  volume={32},
+  number={1},
+  pages={52--68},
+  year={2021},
+  publisher={American Society of Nephrology}
+}
+
+@misc{KPIs2024,
+  author       = {{KPIs2024 - Task}},
+  title        = {KPIs2024 - Task},
+  year         = {2024},
+  url          = {https://sites.google.com/view/kpis2024/task?authuser=0},
+  note         = {Accessed: 2024-06-01}
+}
+
+@article{jha_instance_2021,
+	title = {Instance segmentation for whole slide imaging: end-to-end or detect-then-segment},
+	volume = {8},
+	doi = {10.1117/1.JMI.8.1.014001},
+	abstract = {Purpose: Automatic instance segmentation of glomeruli within kidney whole slide imaging (WSI) is essential for clinical research in renal pathology. In computer vision, the end-to-end instance segmentation methods (e.g., Mask-RCNN) have shown their advantages relative to detect-then-segment approaches by performing complementary detection and segmentation tasks simultaneously. As a result, the end-to-end Mask-RCNN approach has been the de facto standard method in recent glomerular segmentation studies, where downsampling and patch-based techniques are used to properly evaluate the high-resolution images from WSI (e.g., {\textgreater}10,000 × 10,000 pixels on 40 × ). However, in high-resolution WSI, a single glomerulus itself can be more than 1000 × 1000 pixels in original resolution which yields significant information loss when the corresponding features maps are downsampled to the 28 × 28 resolution via the end-to-end Mask-RCNN pipeline. Approach: We assess if the end-to-end instance segmentation framework is optimal for high-resolution WSI objects by comparing Mask-RCNN with our proposed detect-then-segment framework. Beyond such a comparison, we also comprehensively evaluate the performance of our detect-then-segment pipeline through: (1) two of the most prevalent segmentation backbones (U-Net and DeepLab\_v3); (2) six different image resolutions (512 × 512, 256 × 256, 128 × 128, 64 × 64, 32 × 32, and 28 × 28); and (3) two different color spaces (RGB and LAB). Results: Our detect-then-segment pipeline, with the DeepLab\_v3 segmentation framework operating on previously detected glomeruli of 512 × 512 resolution, achieved a 0.953 Dice similarity coefficient (DSC), compared with a 0.902 DSC from the end-to-end Mask-RCNN pipeline. Further, we found that neither RGB nor LAB color spaces yield better performance when compared against each other in the context of a detect-then-segment framework. Conclusions: The detect-then-segment pipeline achieved better segmentation performance compared with the end-to-end method. Our study provides an extensive quantitative reference for other researchers to select the optimized and most accurate segmentation approach for glomeruli, or other biological objects of similar character, on high-resolution WSI.},
+	number = {1},
+	urldate = {2024-10-01},
+	journal = {Journal of Medical Imaging},
+	author = {Jha, Aadarsh and Yang, Haichun and Deng, Ruining and Kapp, Meghan E. and Fogo, Agnes B. and Huo, Yuankai},
+	month = jan,
+	year = {2021},
+	note = {Publisher: SPIE},
+	pages = {014001},
+}
+
+@article{lutnick_user-friendly_2022,
+	title = {A user-friendly tool for cloud-based whole slide image segmentation with examples from renal histopathology},
+	volume = {2},
+	copyright = {2022 The Author(s)},
+	doi = {10.1038/s43856-022-00138-z},
+	abstract = {Image-based machine learning tools hold great promise for clinical applications in pathology research. However, the ideal end-users of these computational tools (e.g., pathologists and biological scientists) often lack the programming experience required for the setup and use of these tools which often rely on the use of command line interfaces.},
+	language = {en},
+	number = {1},
+	urldate = {2024-10-01},
+	journal = {Communications Medicine},
+	author = {Lutnick, Brendon and Manthey, David and Becker, Jan U. and Ginley, Brandon and Moos, Katharina and Zuckerman, Jonathan E. and Rodrigues, Luis and Gallan, Alexander J. and Barisoni, Laura and Alpers, Charles E. and Wang, Xiaoxin X. and Myakala, Komuraiah and Jones, Bryce A. and Levi, Moshe and Kopp, Jeffrey B. and Yoshida, Teruhiko and Zee, Jarcy and Han, Seung Seok and Jain, Sanjay and Rosenberg, Avi Z. and Jen, Kuang Yu and Sarder, Pinaki},
+	month = aug,
+	year = {2022},
+	keywords = {Computational biology and bioinformatics, End-stage renal disease},
+	pages = {1--15},
+}
+
+@inproceedings{leng_accelerated_2023,
+	title = {An accelerated pipeline for multi-label renal pathology image segmentation at the whole slide image level},
+	volume = {12471},
+	doi = {10.1117/12.2653651},
+	abstract = {Deep-learning techniques have been used widely to alleviate the labour-intensive and time-consuming manual annotation required for pixel-level tissue characterization. Our previous study introduced an efficient single dynamic network - Omni-Seg - that achieved multi-class multi-scale pathological segmentation with less computational complexity. However, the patch-wise segmentation paradigm still applies to Omni-Seg, and the pipeline is time-consuming when providing segmentation for Whole Slide Images (WSIs). In this paper, we propose an enhanced version of the Omni-Seg pipeline in order to reduce the repetitive computing processes and utilize a GPU to accelerate the model’s prediction for both better model performance and faster speed. Our proposed method’s innovative contribution is two-fold: (1) a Docker is released for an end-to-end slide-wise multi-tissue segmentation for WSIs; and (2) the pipeline is deployed on a GPU to accelerate the prediction, achieving better segmentation quality in less time. The proposed accelerated implementation reduced the average processing time (at the testing stage) on a standard needle biopsy WSI from 2.3 hours to 22 minutes, using 35 WSIs from the Kidney Tissue Atlas (KPMP) Datasets. The source code and the Docker have been made publicly available at {\textless}a href="https://github.com/ddrrnn123/Omni-Seg"{\textgreater}https://github.com/ddrrnn123/Omni-Seg{\textless}/a{\textgreater}.},
+	urldate = {2024-10-01},
+	booktitle = {Medical {Imaging} 2023: {Digital} and {Computational} {Pathology}},
+	publisher = {SPIE},
+	author = {Leng, Haoju and Deng, Ruining and Asad, Zuhayr and Womick, R. Michael and Yang, Haichun and Wan, Lipeng and Huo, Yuankai},
+	month = apr,
+	year = {2023},
+	pages = {174--179},
+}

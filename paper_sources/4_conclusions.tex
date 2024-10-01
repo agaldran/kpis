@@ -1,0 +1,18 @@
+\section{Conclusions}
+In this paper we analyzed the performance of two different models for two histopathological image segmentation tasks: patch-wise glomeruli segmentation and its WSI version. 
+We experimentally found that a model achieving higher performance at the patch-level might not keep its advantage when following a sliding-window WSI segmentation strategy. 
+Overall, the ranking of \textbf{Model 1} vs \textbf{Model 2} was respectively 2nd vs 8th for Task 1, but 11th vs 5th in Task 2 when measured with the Dice score, and 14th vs 6th if we use the F1 score.
+Given that \textbf{Model 2} already achieved a high Dice score at the patch-level (93.23), preferring \textbf{Model 1} over \textbf{Model 2} would be pointless in this scenario. 
+We can conclude that evaluating segmentation models both at the global and local level should be a requirement for histopathological image segmentation tasks in which WSIs are available.
+
+
+\subsection*{Acknowledgments}
+A. Galdran is funded by a Ramon y Cajal fellowship RYC2022-037144-I.
+
+\subsection*{Disclosure of interests}
+The authors have no competing interests to declare that are relevant to the content of this work.
+
+ \subsection*{Contributions}
+A. Galdran and the P53 team () developed solutions for the competition, N. Arrarte and O. Cámara supervised the work of the P53 team, all authors contributed to the writing of this article.
+
+

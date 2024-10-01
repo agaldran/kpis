@@ -1,0 +1,50 @@
+\section{Methodology}
+
+
+\subsection{Segmentation Model Architecture}
+In our analysis, we employed segmentation models based on encoder-decoder architectures for both patch-level and Whole Slide Image (WSI)-level segmentation, where the final segmentation was constructed via a sliding-window inference approach. 
+We trained various combinations of encoders and decoders, ultimately selecting those models that demonstrated the best performance for each task based on rigorous cross-validation experiments.
+Our analysis below refers to two segmentation models, both sharing the same image encoder, but with different decoders, which we will refer to as \textbf{\textit{model 1}} and \textbf{\textit{model 2}}.
+
+For patch-level segmentation, the preferred architecture (\textbf{\textit{model 1}}) to experiment with as a Feature Pyramid Network (FPN) as the encoder, and a Mix Vision Transformer (MiT) as the decoder. 
+The FPN is a popular choice for segmentation tasks due to its ability to extract multi-scale features efficiently \cite{lin2017feature}. 
+It was initialized using pretrained weights from the ImageNet dataset to leverage prior knowledge and improve convergence during training \cite{qubvel2023segmentation}. 
+FPN creates a top-down architecture with lateral connections to build high-level semantic feature maps at multiple scales. 
+The decoder in this architecture was the Mix Vision Transformer (MiT), originally proposed in the SegFormer framework \cite{xie2021segformer}. 
+MiT uses a transformer-based architecture to process and combine features extracted by the encoder. 
+This transformer-based decoder proved effective in our experiments, especially in handling the features of patch-level inputs. 
+The decoder takes the multi-scale features from the FPN and transforms them into a segmentation map, preserving both global and local context.
+
+As a secondary model (\textbf{\textit{model 2}}), we trained a model with a different encoder, a U-Net++ initialized again from ImageNet-pretrained weights \cite{qubvel2023segmentation}. 
+U-Net++ builds upon the classic U-Net architecture by adding nested, dense skip connections, which enhance the model's ability to learn fine-grained details and smooth transitions between different regions. The decoder for the WSI-level segmentation task was a ResNeSt101, chosen from the timm library \cite{qubvel2023segmentation}. 
+ResNeSt (Split-Attention Networks) extends the traditional ResNet architecture by incorporating split-attention blocks, enabling the network to capture diverse features within a single layer.
+
+
+\subsection{Training  Details}
+
+For Task 1, we followed a similar training procedure to obtain the training hyper-parameters that worked the best and would optimize the cross-validation performance of \textbf{\textit{model 1}} and \textit{model 2\textbf{model 1}}. The following details summarize the key aspects of the training process:
+
+\begin{itemize}
+\item \textbf{Optimizer:} We used the Nadam optimizer \cite{dozat2016}, which combines the benefits of the Nesterov accelerated gradient and Adam optimizers, offering faster convergence and improved stability during training.
+    
+\item \textbf{Learning Rate:} The learning rate was set to \(1 \times 10^{-4}\), a value chosen after initial hyperparameter tuning to balance the speed of convergence with model performance.
+    
+\item \textbf{Batch Size:} A batch size of 8 was used to manage the memory requirements while ensuring efficient gradient computation.
+    
+\item \textbf{Image size:} The input images were resized to \(1024 \times 1024\) pixels for \textbf{\textit{model 1}} and \(512 \times 512\) pixels for \textbf{\textit{model 2}}.
+    
+\item \textbf{Number of Epochs:} \textbf{\textit{model 1}} was trained for 20 epochs, whereas \textbf{\textit{model 2}} trained for 60 epochs. 
+These numbers were chosen to ensure sufficient training time and guarantee convergence while monitoring the validation loss and the dice value to avoid overfitting.
+    
+\item \textbf{Loss Function:} The Dice loss function was used to handle the class imbalance in the dataset and improve segmentation performance by focusing on overlap between predicted and true segmentations. 
+This was added to the Cross-Entropy loss, as this combination is known to provide benefits when dealing with overfitting and miscalibration %\cite{galdran_optimal_2023}.
+\end{itemize}
+
+Other details available on our github repository \href{https://github.com/agaldran/kpis}{\url{github.com/agaldran/kpis}}.
+
+\subsection{Inference: from Local to Global segmentations}
+For Task 1, inference was implemented with Test-Time Augmentation (flipping horizontally or/and vertically each patch), and the final segmentation was found by averaging the prediction of the five cross-validation models. 
+For task 2, the code made available as a template by the organizers was employed. 
+This is, an entire WSI is broken down into smaller patches of size $2048\times2048$, with a stride of $1024$ pixels in each direction, and then downsampled to the same resolution at which each model was trained. After this all patches are forwarded through a model to obtain the corresponding local segmentations, which are upsampled back to a $2048\times2048$ resolution.
+These patches are then stitched together into a single WSI segmentation.
+

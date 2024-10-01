@@ -1,0 +1,91 @@
+\section{Experimental analysis}
+\subsection{Datasets and performance evaluation}
+The training and validation data were shared by the organization of the MICCAI 2024 Kidney Pathology Image Segmentation (KPIs) challenge \cite{KPIs2024}. 
+Tissue sections were stained using Periodic acid-Schiff (PAS) to highlight cellular and structural components. Each image captures nephrons, which contain a glomerulus and a small cluster of blood vessels. The slides were digitized at Vanderbilt University Medical Center, and the digital images were annotated by experienced pathologists.
+The mouse kidney pathology data were available as whole slide images (WSIs) and segmented patches, provided in TIFF format (.tiff) with corresponding segmentation masks. 
+These data were derived from four groups of mouse models: (1) normal mice, sacrificed at 8 weeks, (2) the 5/6Nx group, where mice underwent 5/6 nephrectomy and were sacrificed 12 weeks post-nephrectomy, (3) the DN group, consisting of double-knockout eNOS-/-/ lepr(db/db) mice sacrificed at 18 weeks, and (4) the NEP25 group, consisting of transgenic mice expressing human CD25 selectively in podocytes, sacrificed 3 weeks after immunotoxin-induced glomerular injury.
+
+For the first task focused on patch-level segmentation, requiring segmentation of glomeruli from image patches, 5213 images were provided for training and 1643 for validation. 
+The second, more challenging task, involved Whole Slide Imaging (WSI) segmentation, requiring the segmentation of entire kidney slides.
+In Task 2, the dataset included 27 images for training and 8 for validation.
+The test set included an unknown number of WSIs and patches.
+
+
+%The dataset was not homogeneous in size across all instances, and while this imbalance did not affect classification tasks directly, it needed to be considered during model training to prevent skewed prediction capabilities (see Fig.~\ref{fig2}). Due to the large size of the datasets, we used the Synapse API for downloading and stored the data on the university’s online cluster.
+%\begin{figure}[H]
+%\centerline{\includegraphics[width=0.45\textwidth]{images/dataset.png}}
+%\caption{Distribution of the data for task 1}
+%\label{fig2}
+%\end{figure}
+%The images were systematically organized, with files labeled by mouse type and case, following specific naming conventions to differentiate between the image and its corresponding mask.
+
+For evaluation purposes, the challenge organization chose the Dice Similarity Coefficient to assess the overlap between predicted segmentations and ground truth masks in Task 1. 
+The second task, focused on WSI segmentation, was evaluated using both the Dice metric and the F1 score at the glomeruli level (instance-wise segmentation), which helped measure segmentation performance while addressing false positives and false negatives in the results \cite{reinke_understanding_2024}.
+
+
+\subsection{Numerical results}
+For Task 1, the two segmentation systems were trained following a five-fold cross-validation scheme, resulting in five performance measurements. 
+We trained both \textbf{Model 1} and \textbf{Model 2} with similar data partitions, leading to comparable experimental results. 
+Average per-fold Dice scores resulting from this process are collected in Table \ref{table_1}, where we also show the mean and standard deviation for each model.
+It can be observed that \textbf{Model 1} appears to be more accurate in terms of segmentation overlap in every validation fold, with a higher average performance and also a lower standard deviation, indicating that training at higher resolution could be a factor in improving patch-wise performance.
+
+\newpage
+
+Once the first phase of the challenge was over, the selected models were submitted in the form of a Docker container to the organization, who run it on a hidden test set and returned the final performance to each participant. For Task 1, the first column in Table \ref{table_2} shows this final score for each analyzed model. 
+We can confirm here the preliminary conclusions drawn from our cross-validation analysis: \textbf{Model 1} achieves a higher patch-wise performance than \textbf{Model 2}, achieving a second position in the final competition ranking. 
+It is worth noting that both models generalized in an excellent way to the unseen data at the patch level, since segmentation overlap in the test set was even higher than in the cross-validation experiments. 
+Let us also note that the performance difference appears to be relatively substantial (94.28 vs 93.23), and similar to the gap observed on average in Table \ref{table_1}.
+
+Another interesting observation can be made from the performance in the task of glomeruli segmentation from WSI. 
+In this case, we see that \textbf{Model 2} noticeably outperforms \textbf{Model 1} with a Dice similarity score of 92.74 vs 81.94. 
+Since both models followed the same patch-to-WSI segmentation construction method, this drop in performance appears to indicate that the accuracy of \textbf{Model 1} at the patch-level does not translate fully to global performance.
+The F1 score gives us a hint of what could be the case. 
+In this metric, the performance gap is extremely increased, with \textbf{Model 1} underperforming \textbf{Model 2} by 35.01 vs 86.81. 
+This seems to inform of a potentially large number of (small in size) false positives being generated by \textbf{Model 1}.
+
+
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.5}
+\setlength\tabcolsep{3.50pt}
+ {\bf  
+\begin{center}
+\caption{Five-fold cross-validation performance (Dice similarity score) for patch-wise segmentation, with mean and standard deviation across folds.}\label{table_1}
+\begin{tabular}{c cccccc}
+\midrule
+                       &  Fold 1 &  Fold 2  &  Fold 3  &  Fold 4 &  Fold 5 &  $\mu\pm\sigma$ \\
+\midrule
+\textbf{Model 1}       & 92.37 & 90.54 & 91.47    & 89.65 & 92.50 & 91.31 $\pm$ 1.09       \\
+\midrule
+\textbf{Model 2}       & 91.96 & 89.75 & 89.94    & 87.95 & 91.87 & 90.29 $\pm$ 1.67   \\
+\bottomrule
+\\[-0.25cm]
+\end{tabular}
+% 
+\end{center}
+}
+\vspace{-0.5cm}
+\end{table} 
+
+
+\begin{table}[!b]
+\renewcommand{\arraystretch}{1.5}
+\setlength\tabcolsep{3.50pt}
+ {\bf  
+\begin{center}
+\caption{Test Set Performance on the hidden test set for task 1 (patch segmentation, dice score) and task 2 (WSI segmentation, F1 score for instance-segmentation. Final competition rank in parenthesis.}\label{table_2}
+\begin{tabular}{c ccc}
+\midrule
+                       &  \textbf{Task 1} & \textbf{Task 2 - F1} & \textbf{Task 2 - Dice}   \\
+\midrule
+\textbf{Model 1}       & 94.28 (2nd/24)   & 35.01 (14th/15) & 81.94 (11th/15)  \\
+\midrule
+\textbf{Model 2}       & 93.23 (8th/24)   & 86.81 (6th/15)  & 92.74 (5th/15)\\
+\bottomrule
+\\[-0.25cm]
+\end{tabular}
+
+\end{center}
+}
+\vspace{-0.5cm}
+\end{table} 
+
